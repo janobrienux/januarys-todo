@@ -19,19 +19,19 @@ const todoList = [{
   completed: true
 }];
 const profile = {
-  user: "January",
+  user: "Bill",
   profileImg: "https://www.fillmurray.com/640/360"
 };
 
 function App() {
   return (
-
+        <>
       <div className="App">
-      <h1>ToDo App</h1>
           <div className="user-info">
             {profile.user}
             <img alt="bill" src={profile.profileImg}/>
           </div>
+      <h1>Task List</h1>
       <ul>
         {todoList.map((todo) => {
           return (
@@ -49,7 +49,10 @@ function App() {
          <div className="setting"><img alt="setting-logo" src = "./settings.png"/></div>
        </div>
     </div>
+  </>
   );
 }
-
 export default App;
+
+
+

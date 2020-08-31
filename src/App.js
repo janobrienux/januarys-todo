@@ -1,6 +1,11 @@
 import React from 'react';
 import './App.scss';
+import profileImg from "./images/january.jpg"
 
+const profile = {
+  user: "January O'Brien",
+  profileImg: profileImg,
+};
 
 
 const todoList = [{
@@ -18,40 +23,50 @@ const todoList = [{
   description: "your description",
   completed: true
 }];
-const profile = {
-  user: "Bill",
-  profileImg: "https://www.fillmurray.com/640/360"
-};
+
 
 function App() {
   return (
         <>
       <div className="App">
-          <div className="user-info">
-            {profile.user}
-            <img alt="bill" src={profile.profileImg}/>
-          </div>
-      <h1>Task List</h1>
+          <nav style={styles.topNav}>
+            <img alt="january" src={profile.profileImg} style={styles.topNavAvatar}></img>
+            <h3 style={styles.topNavUserName}>{profile.user}</h3>
+          </nav>
+      <h1>Task List:</h1>
       <ul>
         {todoList.map((todo) => {
           return (
             <li>
-              <p>{todo.title}</p>
-              <p>{todo.description}</p>
+              <span>{todo.title}</span>
+              <span>{todo.description}</span>
               <input type="checkbox" checked={todo.completed}/>
             </li>
           );
         })}
       </ul>
-        <div className="bottom-nav">
-        <div className="list"><img alt="list=logo" src="./list.png"/></div>
-        <div className="calendar"><img alt="calendar-logo" src="./Calendar.png"/></div>
-         <div className="setting"><img alt="setting-logo" src = "./settings.png"/></div>
-       </div>
     </div>
   </>
   );
 }
+const styles = {
+  topNav:{
+    height: "4 rem",
+    backgroundColor:"#A41623",
+    display:"flex",
+    justifyContent:"space-between",
+  },
+  topNavAvatar:{
+    height:"80px",
+    width:"80px",
+    borderRadius:"50%",
+  },
+  topNavUserName:{
+    color:"#FFD29D",
+    fontSize:"28px",
+  },
+}
+
 export default App;
 
 

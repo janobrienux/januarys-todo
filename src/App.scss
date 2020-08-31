@@ -1,57 +1,19 @@
 .App {
-  background-color: #cfe3ff;
+  background-color: white;
   min-height: 500px;
   width: 400px;
   margin: 40px auto;
-  h1 {
-    text-align: center;
-  }
-  li {
-    list-style: none;
-  }
-  p {
-   font-weight: bold;
-   color: #FD72AD;
-  }
+  font-family: 'Courier New', Courier, monospace;
+  
 }
-.user-info {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  color: #FD72AD;
-  img {
-    width: 30px;
-      height: 30px;
-      border-radius: 50%;
-    }
-  }
-  input[type ="checkbox"] {
-    
-    background-color: #FD72AD;
-  }
-.App h1 {
-  color: #FD72AD;
-}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
-.task-items {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
 
-.list, .setting, .calendar {
-  display: inline-flex;
-  padding: 12%;
-  width: 10px;
-  margin-top: 80%;
-  img {
-    width: 60px;
-  }
- 
-}
+
+
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {

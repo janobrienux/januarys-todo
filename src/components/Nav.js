@@ -25,7 +25,7 @@ export default Nav;
 
 const styles = {
   navContainer: {
-    flexBasis: "20%",
+    
   },
   header: {
     color: "#BE92A2",
@@ -40,11 +40,10 @@ const styles = {
     backgroundColor: "#D8E1FF",
     display: "flex",
     justifyContent: "space-between",
-    width: "100%",
-    height: "100px",
+    width: "120%",
   },
   avatar: {
-    height: "80px",
+    height: "60px",
     width: "80px",
     borderRadius: "50%",
     margin: "5%",
@@ -60,7 +59,7 @@ const styles = {
     color: "#BE92A2",
     fontSize: "20px",
     height: "200",
-    width: "30%",
+    width: "40%",
     backgroundColor: "#D8e1ff",
   },
 };

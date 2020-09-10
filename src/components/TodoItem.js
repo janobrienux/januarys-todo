@@ -10,7 +10,7 @@ function TodoItem({ todoList }) {
             <li key={todo.id} style={styles.todoInfo}>
               <p style={todo.completed ? styles.todoCompleted : styles.todoItem}>{todo.title}</p>
 
-              <input style={styles.checkbox} type="checkbox" checked={todo.completed} />
+              <input className="todoChecked" style={styles.checkbox} type="checkbox" checked={todo.completed} />
             </li>
           );
         })}
@@ -31,9 +31,10 @@ const styles = {
   todoInfo: {
     border: "solid",
     borderColor: "#D8E1FF",
+    width:"100%",
     padding: "4%",
     margin: "4%",
-    fontSize: "16px",
+    fontSize: "10px",
   },
   todoCompleted: {
     textDecoration: "line-through",
@@ -42,7 +43,6 @@ const styles = {
   },
   taskContainer: {},
   checkbox: {
-    webkitAppearance: "none",
     backgroundColor: "#fafafa",
     border: "1px solid #BE92A2",
     boxShadow: "0 1px 2px rgba(0,0,0,0.05)",
@@ -51,9 +51,5 @@ const styles = {
     display: "inline-block",
     position: "relative",
   },
-  // checkbox:checked:afer {
-  //   backgroundColor: "#fafafa",
-  //   border: "1px solid #BE92A2",
-  //   color:"#D8E1FF",
-  // }
+  
 };

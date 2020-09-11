@@ -1,12 +1,16 @@
-.App {
-  background-color: white;
-  // min-height: 500px;
-  width: 100%;
-  // margin: 40px auto;
-  font-family: "Courier New", Courier, monospace;
+* {
   margin:0;
   padding:0;
   box-sizing: border-box;
+}
+
+.App {
+  background-color: white;
+  // min-height: 500px;
+  // width: 100%;
+  // margin: 40px auto;
+  font-family: "Courier New", Courier, monospace;
+ 
 }
 .todoChecked:checked:after {
   content: "\2714";

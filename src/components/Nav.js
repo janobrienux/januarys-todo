@@ -1,12 +1,16 @@
 import React from "react";
+import calendar from "./images/cutecalendar.png";
 
 export function SideBar() {
   return (
     <>
       <span style={styles.sideBar}>
-        <p>Calendar</p>
-        <p>Previous</p>
-        <p>Share</p>
+        <ul style={styles.sideBar}>
+          <img style={styles.calimg} alt="date" src={calendar}></img>
+          <li>Calendar</li>
+          <li>Previous</li>
+          <li>Share</li>
+        </ul>
       </span>
     </>
   );
@@ -16,7 +20,6 @@ export function Nav({ profile }) {
   return (
     <nav style={styles.topNav}>
       <img alt="january" src={profile.profileImg} style={styles.avatar}></img>
-      <p style={styles.header}>{profile.user}</p>
     </nav>
   );
 }
@@ -24,15 +27,10 @@ export function Nav({ profile }) {
 export default Nav;
 
 const styles = {
-  navContainer: {
-    
-  },
   header: {
     color: "#BE92A2",
-    fontSize: "24px",
-    width: "75%",
-    display: "flex",
-    justifyContent: "flex-end",
+    fontSize: "22px",
+    // width: "100%",
     margin: "5%",
   },
 
@@ -40,26 +38,22 @@ const styles = {
     backgroundColor: "#D8E1FF",
     display: "flex",
     justifyContent: "space-between",
-    width: "120%",
+    // width: "120%",
   },
   avatar: {
-    height: "60px",
-    width: "80px",
+    height: "40px",
+    width: "60px",
     borderRadius: "50%",
     margin: "5%",
   },
-  sideTaskContainer: {
-    height: "100%",
-    width: "20%",
-  },
   sideBar: {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "flex-end",
+    margin: "5%",
     color: "#BE92A2",
     fontSize: "20px",
-    height: "200",
-    width: "40%",
-    backgroundColor: "#D8e1ff",
+    listStyle: "none",
+    // backgroundColor: "#D8e1ff",
   },
+  calimg:{
+    width:"30px",
+  }
 };

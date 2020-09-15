@@ -1,10 +1,11 @@
 import React from "react";
 import "./App.scss";
+import shortid from "shortid";
 
 import profileImg from "./components/images/january.jpg";
 import Nav, { SideBar } from "./components/Nav";
 import TodoItem from "./components/TodoItem";
-import Greeting, { TaskGreeting } from "./components/greeting";
+import Greeting from "./components/Greeting";
 
 class App extends React.Component {
   state = {
@@ -14,19 +15,19 @@ class App extends React.Component {
     },
     todoList: [
       {
-        id: 1,
+        id: shortid.generate(),
         title: "Pick up clothes from cleaners",
-        
+
         completed: false,
       },
       {
-        id: 2,
+        id: shortid.generate(),
         title: "Order groceries for the week",
-    
+
         completed: false,
       },
       {
-        id: 3,
+        id: shortid.generate(),
         title: "Clean out garage",
         completed: true,
       },
@@ -39,38 +40,46 @@ class App extends React.Component {
     this.setState({ newTodoDescription: value });
   };
   handleAddNewTodo = () => {
-this.setState(state=> {
-  return{
-    todoList:[
-      ...state.todoList, 
-      {id:4, title:state.newTodoDescription,completed:false}
-    ],
-    newTodoDescription:"",
-
-  };
-});
+    this.setState((state) => {
+      return {
+        todoList: [...state.todoList, { id: shortid.generate(), title: state.newTodoDescription, completed: false }],
+        newTodoDescription: "",
+      };
+    });
   };
   handleCheckTodo = (id) => {
-    this.setState(state=>{
-      let newList = state.todoList.map(item=>{
-        if(item.id === id){
-          return {...item, completed: !item.completed}
+    this.setState((state) => {
+      let newList = state.todoList.map((item) => {
+        if (item.id === id) {
+          return { ...item, completed: !item.completed };
         }
         return item;
       });
-      return{todoList:newList}
-    })
-  }
+      return { todoList: newList };
+    });
+  };
+  handleDeleteTodo = (id) => {
+    this.setState(state => {
+      let filteredList = state.todoList.filter(item =>{
+          if (item.id === id){
+            return false
+          }
+          return true
+        });
+        return {todoList: filteredList};
+    });
+  };
 
   render() {
     return (
       <>
-        <Greeting/>
-        <TaskGreeting/>
         <Nav profile={this.state.profile} />
+        <Greeting todoList={this.state.todoList} />
+
         <div style={styles.container}>
           <SideBar />
           <TodoItem todoList={this.state.todoList} onCheckTodo={this.handleCheckTodo} />
+         
           <div style={styles.newtask}>
             <input
               style={styles.input}
@@ -78,8 +87,11 @@ this.setState(state=> {
               value={this.state.newTodoDescription}
               type="text"
             />
-            <button style={styles.button}
-            onClick={this.handleAddNewTodo}>Add new Task</button>
+            <button style={styles.button} onClick={this.handleAddNewTodo}
+            // onDeleteTodo={this.handleDeleteTodo}
+            >
+              Add new Task
+            </button>
           </div>
         </div>
       </>
@@ -93,10 +105,7 @@ const styles = {
     display: "flex",
     flexDirection: "column",
   },
-  greeting:{
-    color: "#BE92A2",
-    fontSize: "22px",
-  },
+
   newtask: {
     display: "flex",
     flexDirection: "column",
@@ -116,10 +125,10 @@ const styles = {
     borderRadius: "50%",
   },
   input: {
-    width:"80%",
+    width: "80%",
     height: "100px",
     borderColor: "#D8E1FF",
     color: "#BE92A2",
-    borderRadius:"20%",
+    borderRadius: "20%",
   },
 };

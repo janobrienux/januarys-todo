@@ -4,10 +4,14 @@ export class Greeting extends React.Component {
   state = {
     hour: null,
     username: "January",
+    greeting: "",
   };
 
   componentDidMount() {
     this.getHour();
+    let greetingMessage =
+      this.props.todoList.length === 0 ? "You have no task to complete" : "You have lots of tasks to complete";
+    this.setState({ greeting: greetingMessage });
   }
 
   getHour = () => {
@@ -21,17 +25,20 @@ export class Greeting extends React.Component {
   render() {
     const { hour, username } = this.state;
     return (
-      <div className="App">
-        <h2>{hour < 12 ? `Good Morning ${username}` : `Good evening ${username}`}</h2>
-      </div>
+      <>
+        <div style={styles.greeting}>
+          <h2>{hour < 12 ? `Good Morning ${username}` : `Good Afternoon ${username}`}</h2>
+        </div>
+        <p style={styles.greeting}>{this.state.greeting}</p>
+      </>
     );
   }
 }
-export function TaskGreeting(props) {
-  const todoList = props.todoList;
-  let greetingMessage = todoList === 3 ? "You have a few task to complete" : "You have lots of tasks to complete";
-
-  return <p>{greetingMessage}</p>;
-}
 
 export default Greeting;
+const styles = {
+  greeting: {
+    color: "#BE92A2",
+    fontSize: "22px",
+  },
+};

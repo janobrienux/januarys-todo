@@ -18,7 +18,7 @@ export function SideBar() {
 
 export function Nav({ profile }) {
   return (
-    <nav style={styles.topNav}>
+    <nav>
       <img alt="january" src={profile.profileImg} style={styles.avatar}></img>
     </nav>
   );
@@ -27,19 +27,6 @@ export function Nav({ profile }) {
 export default Nav;
 
 const styles = {
-  header: {
-    color: "#BE92A2",
-    fontSize: "22px",
-    // width: "100%",
-    margin: "5%",
-  },
-
-  topNav: {
-    backgroundColor: "#D8E1FF",
-    display: "flex",
-    justifyContent: "space-between",
-    // width: "120%",
-  },
   avatar: {
     height: "40px",
     width: "60px",

@@ -3,6 +3,19 @@
   padding:0;
   box-sizing: border-box;
 }
+nav {
+  position: relative;
+  width:100%;
+  height:100px;
+  background:linear-gradient(#be92a2,#D8E1FF);
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% 80%, //change the second value on this line to get the clip you want
+    0 100%
+  );
+}
+
 
 .App {
   background-color: white;

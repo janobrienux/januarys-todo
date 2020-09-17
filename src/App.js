@@ -7,6 +7,17 @@ import Nav, { SideBar } from "./components/Nav";
 import TodoItem from "./components/TodoItem";
 import Greeting from "./components/Greeting";
 
+
+
+
+
+
+
+
+
+
+
+
 class App extends React.Component {
   state = {
     profile: {
@@ -59,14 +70,14 @@ class App extends React.Component {
     });
   };
   handleDeleteTodo = (id) => {
-    this.setState(state => {
-      let filteredList = state.todoList.filter(item =>{
-          if (item.id === id){
-            return false
-          }
-          return true
-        });
-        return {todoList: filteredList};
+    this.setState((state) => {
+      let filteredList = state.todoList.filter((item) => {
+        if (item.id === id) {
+          return false;
+        }
+        return true;
+      });
+      return { todoList: filteredList };
     });
   };
 
@@ -78,8 +89,15 @@ class App extends React.Component {
 
         <div style={styles.container}>
           <SideBar />
-          <TodoItem todoList={this.state.todoList} onCheckTodo={this.handleCheckTodo} />
-         
+          <div style={styles.taskContainer}>
+            <p style={styles.todoItem}>Task List:</p>
+            <ul style={styles.todoItem}>
+              {this.state.todoList.map((todo) => {
+                return <TodoItem todo={todo} onDeleteTodo={this.handleDeleteTodo}/>;
+              })}
+            </ul>
+          </div>
+
           <div style={styles.newtask}>
             <input
               style={styles.input}
@@ -87,8 +105,10 @@ class App extends React.Component {
               value={this.state.newTodoDescription}
               type="text"
             />
-            <button style={styles.button} onClick={this.handleAddNewTodo}
-            // onDeleteTodo={this.handleDeleteTodo}
+            <button
+              style={styles.button}
+              onClick={this.handleAddNewTodo}
+              
             >
               Add new Task
             </button>

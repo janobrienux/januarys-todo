@@ -17,7 +17,7 @@ import Greeting from "./components/Greeting";
 
 
 
-
+const TODO_LIST_KEY = "todoApp_list"
 class App extends React.Component {
   state = {
     profile: {
@@ -45,6 +45,19 @@ class App extends React.Component {
     ],
     newTodoDescription: "",
   };
+  componentDidMount() {
+    let todoListStr = localStorage.getItem(TODO_LIST_KEY)
+    if(todoListStr) {
+      this.setState({
+        todoList: JSON.parse(todoListStr)
+      }
+      )}
+  };
+  componentDidUpdate(prevProps, prevState) {
+    let todoListStr = JSON.stringify(this.state)
+    localStorage.setItem(TODO_LIST_KEY, todoListStr)
+  };
+
 
   handleChangeNewTodo = (event) => {
     const value = event.target.value;
@@ -57,6 +70,7 @@ class App extends React.Component {
         newTodoDescription: "",
       };
     });
+    
   };
   handleCheckTodo = (id) => {
     this.setState((state) => {
@@ -98,7 +112,7 @@ class App extends React.Component {
             </ul>
           </div>
 
-          <div style={styles.newtask}>
+          <div style={styles.newTask}>
             <input
               style={styles.input}
               onChange={this.handleChangeNewTodo}
@@ -126,7 +140,7 @@ const styles = {
     flexDirection: "column",
   },
 
-  newtask: {
+  newTask: {
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",

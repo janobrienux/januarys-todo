@@ -1,85 +1,48 @@
 import React from "react";
 import "./App.scss";
+import shortid from "shortid";
 
 import profileImg from "./components/images/january.jpg";
 import Nav, { SideBar } from "./components/Nav";
 import TodoItem from "./components/TodoItem";
-import Greeting, { TaskGreeting } from "./components/greeting";
+import Greeting from "./components/Greeting";
 
+const TODO_LIST_KEY = "todoApp_list";
 class App extends React.Component {
-  state = {
-    profile: {
+      profile: {
       user: "January O'Brien",
       profileImg: profileImg,
-    },
-    todoList: [
-      {
-        id: 1,
-        title: "Pick up clothes from cleaners",
-        
-        completed: false,
-      },
-      {
-        id: 2,
-        title: "Order groceries for the week",
-    
-        completed: false,
-      },
-      {
-        id: 3,
-        title: "Clean out garage",
-        completed: true,
-      },
-    ],
-    newTodoDescription: "",
+    }
   };
-
-  handleChangeNewTodo = (event) => {
-    const value = event.target.value;
-    this.setState({ newTodoDescription: value });
-  };
-  handleAddNewTodo = () => {
-this.setState(state=> {
-  return{
-    todoList:[
-      ...state.todoList, 
-      {id:4, title:state.newTodoDescription,completed:false}
-    ],
-    newTodoDescription:"",
-
-  };
-});
-  };
-  handleCheckTodo = (id) => {
-    this.setState(state=>{
-      let newList = state.todoList.map(item=>{
-        if(item.id === id){
-          return {...item, completed: !item.completed}
-        }
-        return item;
-      });
-      return{todoList:newList}
-    })
-  }
 
   render() {
     return (
       <>
-        <Greeting/>
-        <TaskGreeting/>
         <Nav profile={this.state.profile} />
+        <Greeting todoList={this.state.todoList} />
+
         <div style={styles.container}>
           <SideBar />
-          <TodoItem todoList={this.state.todoList} onCheckTodo={this.handleCheckTodo} />
-          <div style={styles.newtask}>
+          <div style={styles.taskContainer}>
+            <p style={styles.todoItem}>Task List:</p>
+            <TodoItem
+              todo={this.state.todoList}
+              onCheckTodo={this.handleCheckTodo}
+              onDeleteTodo={this.handleDeleteTodo}
+            />
+            ;
+          </div>
+
+          <div style={styles.newTask}>
             <input
               style={styles.input}
               onChange={this.handleChangeNewTodo}
               value={this.state.newTodoDescription}
               type="text"
             />
-            <button style={styles.button}
-            onClick={this.handleAddNewTodo}>Add new Task</button>
+            <button style={styles.button} onClick={this.handleAddNewTodo}>
+              Add new Task
+            </button>
           </div>
         </div>
       </>
@@ -93,11 +56,8 @@ const styles = {
     display: "flex",
     flexDirection: "column",
   },
-  greeting:{
-    color: "#BE92A2",
-    fontSize: "22px",
-  },
-  newtask: {
+
+  newTask: {
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
@@ -116,10 +76,10 @@ const styles = {
     borderRadius: "50%",
   },
   input: {
-    width:"80%",
+    width: "80%",
     height: "100px",
     borderColor: "#D8E1FF",
     color: "#BE92A2",
-    borderRadius:"20%",
+    borderRadius: "20%",
   },
 };

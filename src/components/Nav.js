@@ -1,12 +1,12 @@
 import React from "react";
-import calendar from "./images/cutecalendar.png";
+import calendar from "./images/cute.png";
 
 export function SideBar() {
   return (
     <>
       <span style={styles.sideBar}>
         <ul style={styles.sideBar}>
-          <img style={styles.calimg} alt="date" src={calendar}></img>
+          <img style={styles.calImg} alt="date" src={calendar}></img>
           <li>Calendar</li>
           <li>Previous</li>
           <li>Share</li>
@@ -18,7 +18,7 @@ export function SideBar() {
 
 export function Nav({ profile }) {
   return (
-    <nav style={styles.topNav}>
+    <nav>
       <img alt="january" src={profile.profileImg} style={styles.avatar}></img>
     </nav>
   );
@@ -27,19 +27,6 @@ export function Nav({ profile }) {
 export default Nav;
 
 const styles = {
-  header: {
-    color: "#BE92A2",
-    fontSize: "22px",
-    // width: "100%",
-    margin: "5%",
-  },
-
-  topNav: {
-    backgroundColor: "#D8E1FF",
-    display: "flex",
-    justifyContent: "space-between",
-    // width: "120%",
-  },
   avatar: {
     height: "40px",
     width: "60px",
@@ -53,7 +40,7 @@ const styles = {
     listStyle: "none",
     // backgroundColor: "#D8e1ff",
   },
-  calimg:{
+  calImg:{
     width:"30px",
   }
 };

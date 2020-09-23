@@ -1,30 +1,27 @@
 import React from "react";
 
-function TodoItem({ todoList }) {
-  const handleCheckTodo = (id) => todoList.onCheckedTodo(todoList.todoItem.id);
+function TodoItem(props) {
+const handleDeleteTodo = ()=> props.onDeleteTodo(props.todo.id);
+  
   return (
-    <div style={styles.taskContainer}>
-      <p style={styles.todoItem}>Task List:</p>
-      <ul style={styles.todoItem}>
-        {todoList.map((todo) => {
-          return (
-            <li key={todo.id} style={styles.todoInfo}>
-              <p style={todo.completed ? styles.todoCompleted : styles.todoItem}>{todo.title}</p>
-              <button>Delete</button>
+
+
+    
+            <li key={props.todo.id} style={styles.todoInfo}>
+              <p style={props.todo.completed ? styles.todoCompleted : styles.todoItem}>{props.todo.title}</p>
+              <button onClick={handleDeleteTodo}>Delete</button>
               <input
                 className="todoChecked"
                 style={styles.checkbox}
                 type="checkbox"
-                checked={todo.completed}
-                onChange={handleCheckTodo}
+                checked={props.todo.completed}
+                onChange={()=>props.onCheckTodo(props.todo.id)}
               />
             </li>
-          );
-        })}
-      </ul>
-    </div>
-  );
-}
+  )
+  }
+      
+
 
 export default TodoItem;
 

@@ -1,12 +1,12 @@
 import React from "react";
-import calendar from "./images/cutecalendar.png";
+import calendar from "./images/cute.png";
 
 export function SideBar() {
   return (
     <>
       <span style={styles.sideBar}>
         <ul style={styles.sideBar}>
-          <img style={styles.calimg} alt="date" src={calendar}></img>
+          <img style={styles.calImg} alt="date" src={calendar}></img>
           <li>Calendar</li>
           <li>Previous</li>
           <li>Share</li>
@@ -40,7 +40,7 @@ const styles = {
     listStyle: "none",
     // backgroundColor: "#D8e1ff",
   },
-  calimg:{
+  calImg:{
     width:"30px",
   }
 };

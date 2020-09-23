@@ -7,92 +7,12 @@ import Nav, { SideBar } from "./components/Nav";
 import TodoItem from "./components/TodoItem";
 import Greeting from "./components/Greeting";
 
-
-
-
-
-
-
-
-
-
-
-const TODO_LIST_KEY = "todoApp_list"
+const TODO_LIST_KEY = "todoApp_list";
 class App extends React.Component {
-  state = {
-    profile: {
+      profile: {
       user: "January O'Brien",
       profileImg: profileImg,
-    },
-    todoList: [
-      {
-        id: shortid.generate(),
-        title: "Pick up clothes from cleaners",
-
-        completed: false,
-      },
-      {
-        id: shortid.generate(),
-        title: "Order groceries for the week",
-
-        completed: false,
-      },
-      {
-        id: shortid.generate(),
-        title: "Clean out garage",
-        completed: true,
-      },
-    ],
-    newTodoDescription: "",
-  };
-  componentDidMount() {
-    let todoListStr = localStorage.getItem(TODO_LIST_KEY)
-    if(todoListStr) {
-      this.setState({
-        todoList: JSON.parse(todoListStr)
-      }
-      )}
-  };
-  componentDidUpdate(prevProps, prevState) {
-    let todoListStr = JSON.stringify(this.state)
-    localStorage.setItem(TODO_LIST_KEY, todoListStr)
-  };
-
-
-  handleChangeNewTodo = (event) => {
-    const value = event.target.value;
-    this.setState({ newTodoDescription: value });
-  };
-  handleAddNewTodo = () => {
-    this.setState((state) => {
-      return {
-        todoList: [...state.todoList, { id: shortid.generate(), title: state.newTodoDescription, completed: false }],
-        newTodoDescription: "",
-      };
-    });
-    
-  };
-  handleCheckTodo = (id) => {
-    this.setState((state) => {
-      let newList = state.todoList.map((item) => {
-        if (item.id === id) {
-          return { ...item, completed: !item.completed };
-        }
-        return item;
-      });
-      return { todoList: newList };
-    });
-  };
-  handleDeleteTodo = (id) => {
-    this.setState((state) => {
-      let filteredList = state.todoList.filter((item) => {
-        if (item.id === id) {
-          return false;
-        }
-        return true;
-      });
-      return { todoList: filteredList };
-    });
+    }
   };
 
   render() {
@@ -105,11 +25,12 @@ class App extends React.Component {
           <SideBar />
           <div style={styles.taskContainer}>
             <p style={styles.todoItem}>Task List:</p>
-            <ul style={styles.todoItem}>
-              {this.state.todoList.map((todo) => {
-                return <TodoItem todo={todo} onDeleteTodo={this.handleDeleteTodo}/>;
-              })}
-            </ul>
+            <TodoItem
+              todo={this.state.todoList}
+              onCheckTodo={this.handleCheckTodo}
+              onDeleteTodo={this.handleDeleteTodo}
+            />
+            ;
           </div>
 
           <div style={styles.newTask}>
@@ -119,11 +40,7 @@ class App extends React.Component {
               value={this.state.newTodoDescription}
               type="text"
             />
-            <button
-              style={styles.button}
-              onClick={this.handleAddNewTodo}
-              
-            >
+            <button style={styles.button} onClick={this.handleAddNewTodo}>
               Add new Task
             </button>
           </div>

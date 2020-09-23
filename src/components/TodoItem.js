@@ -4,6 +4,9 @@ function TodoItem(props) {
 const handleDeleteTodo = ()=> props.onDeleteTodo(props.todo.id);
   
   return (
+
+
+    
             <li key={props.todo.id} style={styles.todoInfo}>
               <p style={props.todo.completed ? styles.todoCompleted : styles.todoItem}>{props.todo.title}</p>
               <button onClick={handleDeleteTodo}>Delete</button>
@@ -15,8 +18,8 @@ const handleDeleteTodo = ()=> props.onDeleteTodo(props.todo.id);
                 onChange={()=>props.onCheckTodo(props.todo.id)}
               />
             </li>
-          );
-        }
+  )
+  }
       
 
 
